@@ -1,0 +1,6 @@
+user_source_path: /Users/jonathanarmoza/Desktop/metackathon/data/input/corpus/txt
+corpus_short_name: metackathon
+corpus_full_name: Metackathon
+num_topics: 100
+num_intervals: 100
+text_chunk_size_words: 10000

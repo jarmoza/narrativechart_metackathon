@@ -1,0 +1,45 @@
+1. Map out a clean pipeline for the process of creating the final visualization
+
+Step 1. Place corpus documents to the output data folder
+Step 2. (Setup and) Process those documents through TWiC via MALLET (100 topics)
+Step 3. Determine the top 10 topics from the corpus via TWiC's outputs
+Step 4. Determine the year range of the corpus via the corpus metadata
+    - This is the visualization X axis and ticks
+Step 5. Bucket each document by its publication year
+Step 6. Determine the average of each of the top 10 topics across all documents in each bucket
+    - This is the visualization Y-axis
+Step 7. Output this data into a format for the xkcd narrative visualization to read
+Step 8. Tweak the visualization so it looks good (font, font size, colors, title, etc.)
+Step 9. Write README documenting this
+
+Folder layout
+
+metackathon/
+    code/
+        twic/
+        processing/
+        visualization/
+    data/
+        input/
+            corpus/
+                /documents
+                /metadata
+            twic/
+        output/
+            processing/
+            twic/
+
+Python script
+1) Copies all *.txt from given path files into data/input/corpus
+2) Determines the year of each document (keyed on doc ID) via corpus metadata file
+3) Edits twic/config.yaml to include path
+4) Runs twic_corpus2viz.py with gkmi flags
+5) Copies twic_corpusinfo.json from twic/data/input/json into data/output/twic
+6) Determine the top 10 topics of the corpus via twic_corpusinfo.json
+7) Determine the average weight of each topic for each year in the corpus (by looking at document-topic distributions)w
+8) Output topic weight by year data to a json file readable by the XKCD visualization with configured attributes to data/output/processing
+
+JavaScript
+
+1) Reads output json file in data/output/processing and produces visualization in browser
+2) Screencapture image
